@@ -1,0 +1,230 @@
+$font-family-base: Source Sans Pro, sans-serif;
+$font-family-heading: Roboto Slab, serif;
+$font-size-base: 1rem;
+$line-height-base: 1.4;
+
+$color-primary: #dcf1b2;
+$color-secondary: darken($color-primary, 30%);
+$color-text: darken($color-primary, 68%);//454c36
+$module: 2rem;
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 14px;
+  height: 100%;
+
+  @media (min-width: 480px) {
+    font-size: 16px;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 20px;
+  }
+}
+
+body {
+  font-family: $font-family-base;
+  line-height: $line-height-base;
+  font-weight: 300;
+  color: $color-text;
+  background-color: $color-primary;
+  min-height: 100%;
+
+  @media (min-width: 480px) {
+    border: ($module / 2) solid #fff;
+  }
+}
+
+h1 {
+  font-family: $font-family-heading;
+  line-height: 1.2;
+  font-size: 2.8rem;
+  margin: 0;
+}
+
+main {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: $module;
+
+  @media (min-width: 480px) {
+    padding-top: $module * 2;
+    padding-bottom: $module * 2;
+  }
+}
+
+.block {
+  background-color: #fff;
+  margin: (-($module / 1.5)) (-$module) ($module / 1.5) (-$module);
+  padding: ($module * 2) $module $module $module;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: inline-block;
+    margin: 0 ($module / 3) ($module / 3) 0;
+  }
+}
+
+a {
+  color: $color-text;
+  text-decoration: none;
+  border-bottom: 1px solid $color-secondary;
+
+  &:focus,
+  &:hover {
+    background-color: lighten($color-secondary, 20%);
+  }
+}
+
+input[type="range"] {
+  margin-bottom: $module;
+}
+
+p {
+  margin: 0 0 $module 0;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/*--------------------------------*\
+  range input
+  Thanks to:
+  https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css
+  http://danielstern.ca/range.css
+\*--------------------------------*/
+
+$track-height: 2px;
+$track-background: $color-secondary;
+
+@mixin track-styles {
+  width: 100%;
+  cursor: pointer;
+  height: $track-height;
+  background: $track-background;
+}
+
+@mixin track ($vendor) {
+  @if $vendor == ms {
+    &::-ms-track {
+      width: 100%;
+      height: $track-height;
+      cursor: pointer;
+      background: transparent;
+      border-color: transparent;
+      color: transparent;
+    }
+
+    &::-ms-fill-lower {
+      background: $track-background;
+    }
+
+    &::-ms-fill-upper {
+      background: $track-background;
+    }
+  }
+
+  @if $vendor == webkit {
+    &::-webkit-slider-runnable-track { @include track-styles; }
+  }
+
+  @if $vendor == moz {
+    &::-moz-range-track { @include track-styles; }
+  }
+}
+
+@mixin thumb-styles {
+  $height: 24px;
+  $width: $height;
+  $border-width: 4px;
+
+  cursor: pointer;
+  border: $border-width solid #fff;
+  height: $height;
+  width: $width;
+  border-radius: 50%;
+  background: $color-secondary;
+  margin-top: -(($height - $border-width) / 2);
+}
+
+@mixin thumb ($vendor) {
+  @if $vendor == webkit {
+    &::-webkit-slider-thumb {
+      @include thumb-styles;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+  }
+
+  @if $vendor == moz {
+    &::-moz-range-thumb { @include thumb-styles; }
+  }
+
+  @if $vendor == ms {
+    &::-ms-thumb { @include thumb-styles; }
+  }
+}
+
+input[type=range] {
+  width: 100%;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  &:focus { outline: none; }
+
+  @include track(webkit);
+  @include thumb(webkit);
+
+  @include thumb(moz);
+  @include track(moz);
+
+  @include track(ms);
+  @include thumb(ms);
+}
+
+/*--------------------------------*\
+  select
+\*--------------------------------*/
+
+select {
+  cursor: pointer;
+  display: inline-block;
+  color: $color-text;
+  font-size: inherit;
+  font-weight: inherit;
+  padding: 0 3rem 0 0;
+  border: 0;
+  background-image: url('../images/dropdown-arrow.svg');
+  background-size: 2rem;
+  background-position: center right;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border-radius: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
