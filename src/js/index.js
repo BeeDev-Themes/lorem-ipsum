@@ -31,7 +31,7 @@ select.addEventListener('change', function () {
   // if user selected the "add yours" option
   // then redirect him to the documentation on how to do so
   if (source === 'diy') {
-    window.location.href = 'https://github.com/wizbii/wizipsum/tree/gh-pages#add-yours'
+    window.location.href = 'https://github.com/BeeDev-Themes/lorem-ipsum/blob/main/README.md'
     return
   }
 
@@ -42,7 +42,7 @@ select.addEventListener('change', function () {
 selectDataSource(window.location.hash.substr(1))
 
 function selectDataSource (name) {
-  if (!data.hasOwnProperty(name)) name = 'programmers'
+  if (!data.hasOwnProperty(name)) name = 'navy'
 
   select.value = name
   window.location.hash = name

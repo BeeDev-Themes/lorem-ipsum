@@ -6,4 +6,4 @@ By adding your own lorem ipsum, you're making it available and shareable to ever
 3. npm run build
 4. Submit your pull request
 
-When your contribution gets merged, you'll then be able to share it via, e.g: 
+When your contribution gets merged, you'll then be able to share it via, e.g: https://beedev-themes.github.io/lorem-ipsum/#yourDataHere
